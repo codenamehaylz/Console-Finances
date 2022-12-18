@@ -87,48 +87,48 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
-console.log("Financial Analysis\n------------------------");
 
 //Calculate the total number of months in the dataset
-    //populate a new array of 'months', then use months.length and log in the console
+    //populate a new array of 'months', then use months.length later in the console log to display the number of months
 
 var months = [];
 
 for (var i = 0; i < finances.length; i++) {
     months.push(finances[i][0]);
 }
-console.log("Total months: " + months.length);
-
 
 //Calculate the net total amount of Profit/Losses
     //populate a new array of 'numbers'
-    //calculate the sum of the 'numbers' array and log in console
 
 var numbers = [];
 
 for (var i = 0; i < finances.length; i++) {
     numbers.push(finances[i][1]);
 }
+    //The reduce method executes the function for each element in the array. The function a + b adds each element to the sum of the previous ones. The value of netTotal is the accumulated result.
 
 var netTotal = numbers.reduce((a, b) => a + b);
 
-console.log("Total: $" + netTotal);
-
 //Calculate the average of the changes in Profit/Losses over the entire period
-    // Total/Number of months
+    // netTotal divided by the number of months
 
 var avChange = netTotal / months.length;
 
-console.log("Average Change: $" + avChange.toFixed(2));
-
 //The greatest increase in profits over the entire period (date and amount)
+    // The function targets the elements at index [1] of the finances array (the numbers). If previous element (a) is greater than current element (b) is true, then the result is a.
 
-var grtIncrease = finances.reduce((a,b) => (a[1] < b[1] ? b : a));
-
-console.log("Greatest Increase in Profits: " + grtIncrease[0] + " ($" + grtIncrease[1] + ")");
+var grtIncrease = finances.reduce((a,b) => (a[1] > b[1] ? a : b));
 
 //The greatest descrease in losses over the entire period (date and amount)
+    //Same technique used previously except the function checks if a is lesser than b.
 
 var grtDecrease = finances.reduce((a,b) => (a[1] < b[1] ? a : b));
 
-console.log("Greatest Decrease in Profits: " + grtDecrease[0] + " ($" + grtDecrease[1] + ")");
+//Logs the whole analyis into the console
+
+console.log("Financial Analysis\n------------------------"
++ "\nTotal months: " + months.length
++ "\nTotal: $" + netTotal
++ "\nAverage Change: $" + avChange.toFixed(2)
++ "\nGreatest Increase in Profits: " + grtIncrease[0] + " ($" + grtIncrease[1] + ")"
++ "\nGreatest Decrease in Profits: " + grtDecrease[0] + " ($" + grtDecrease[1] + ")")
