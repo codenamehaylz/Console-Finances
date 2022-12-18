@@ -88,7 +88,7 @@ var finances = [
 ];
 
 //Calculate the total number of months in the dataset
-    //populate new array of 'months', then show the length of the array with months.length
+    //populate a new array of 'months', then use months.length and log in the console
 
 var months = [];
 
@@ -100,14 +100,19 @@ console.log("Total months: " + months.length);
 
 //Calculate the net total amount of Profit/Losses
     //populate a new array of 'numbers'
-    //TODO find a way to calculate the sum of all numbers in the array
+    //calculate the sum of the 'numbers' array and log in console
 
 var numbers = [];
 
 for (var i = 0; i < finances.length; i++) {
     numbers.push(finances[i][1]);
 }
-console.log(numbers);
+
+var netTotal = numbers.reduce(function (a, b) {
+    return a + b;
+});
+
+console.log("Total: $" + netTotal);
 
 //Calculate the average of the changes in Profit/Losses over the entire period
     // Total/Number of months
