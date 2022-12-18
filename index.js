@@ -117,6 +117,11 @@ console.log("Total: $" + netTotal);
 //Calculate the average of the changes in Profit/Losses over the entire period
     // Total/Number of months
 
+var avChange = netTotal / months.length;
+
+console.log("Average Change: " + avChange.toFixed(2));
+
+
 //The greatest increase in profits over the entire period (date and amount)
 
 //The greatest descrease in losses over the entire period (date and amount)
