@@ -87,6 +87,8 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
+console.log("Financial Analysis\n------------------------");
+
 //Calculate the total number of months in the dataset
     //populate a new array of 'months', then use months.length and log in the console
 
@@ -108,9 +110,7 @@ for (var i = 0; i < finances.length; i++) {
     numbers.push(finances[i][1]);
 }
 
-var netTotal = numbers.reduce(function (a, b) {
-    return a + b;
-});
+var netTotal = numbers.reduce((a, b) => a + b);
 
 console.log("Total: $" + netTotal);
 
@@ -119,11 +119,16 @@ console.log("Total: $" + netTotal);
 
 var avChange = netTotal / months.length;
 
-console.log("Average Change: " + avChange.toFixed(2));
-
+console.log("Average Change: $" + avChange.toFixed(2));
 
 //The greatest increase in profits over the entire period (date and amount)
 
+var grtIncrease = finances.reduce((a,b) => (a[1] < b[1] ? b : a));
+
+console.log("Greatest Increase in Profits: " + grtIncrease[0] + " ($" + grtIncrease[1] + ")");
+
 //The greatest descrease in losses over the entire period (date and amount)
 
-//Print all to console using console.log
+var grtDecrease = finances.reduce((a,b) => (a[1] < b[1] ? a : b));
+
+console.log("Greatest Decrease in Profits: " + grtDecrease[0] + " ($" + grtDecrease[1] + ")");
