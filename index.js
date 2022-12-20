@@ -99,27 +99,37 @@ for (var i = 0; i < finances.length; i++) {
 
 //Calculate the net total amount of Profit/Losses
     //populate a new array of 'numbers'
+    //The reduce method executes the function for each element in the array. The function a + b adds each element to the sum of the previous ones. The value of netTotal is the accumulated result.
 
 var numbers = [];
 
 for (var i = 0; i < finances.length; i++) {
     numbers.push(finances[i][1]);
 }
-    //The reduce method executes the function for each element in the array. The function a + b adds each element to the sum of the previous ones. The value of netTotal is the accumulated result.
 
 var netTotal = numbers.reduce((a, b) => a + b);
 
 //Calculate the average of the changes in Profit/Losses over the entire period
-    // netTotal divided by the number of months
+    //use for loop to populate a new array of the differences between each element in the numbers array.
+    //numbers[i+1] starts the loop on the second element. numbers.length-1 because we have skipped the first element.
+    //get total differences using the reduce method as before
 
-var avChange = netTotal / months.length;
+var differences = []
+
+for (var i = 0; i < numbers.length-1; i++) {
+    differences.push(numbers[i+1] - numbers[i]);
+}
+
+var totalDiff = differences.reduce((a, b) => a + b);
+
+var avChange = totalDiff / (months.length-1);
 
 //The greatest increase in profits over the entire period (date and amount)
     // The function targets the elements at index [1] of the finances array (the numbers). If previous element (a) is greater than current element (b) is true, then the result is a.
 
 var grtIncrease = finances.reduce((a,b) => (a[1] > b[1] ? a : b));
 
-//The greatest descrease in losses over the entire period (date and amount)
+//The greatest decrease in losses over the entire period (date and amount)
     //Same technique used previously except the function checks if a is lesser than b.
 
 var grtDecrease = finances.reduce((a,b) => (a[1] < b[1] ? a : b));
