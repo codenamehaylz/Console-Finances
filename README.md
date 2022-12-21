@@ -21,7 +21,7 @@ Right click anywhere on the deployed page and click 'inspect' to open the dev to
 
 ## Features
 
-Contained entirely in the Javascript file, this code includes nested arrays, for loops, the .push method, the .reduce method and several different functions.
+Contained entirely in the Javascript file, this code includes nested arrays, for loops, the .push method, the .reduce method and several different functions. The code is responsive in that any changes to the original dataset will update the values displayed in the console.
 
 ## License
 
