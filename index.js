@@ -84,7 +84,7 @@ var finances = [
 ['Nov-2016', 795914],
 ['Dec-2016', 60988],
 ['Jan-2017', 138230],
-['Feb-2017', 671099]
+['Feb-2017', 671099],
 ];
 
 
@@ -124,15 +124,25 @@ var totalDiff = differences.reduce((a, b) => a + b);
 
 var avChange = totalDiff / (months.length-1);
 
-//The greatest increase in profits over the entire period (date and amount)
-    // The function targets the elements at index [1] of the finances array (the numbers). If previous element (a) is greater than current element (b) is true, then the result is a.
+//Get the greatest increase in profits, and greatest decrease in losses, log the date and amount
+    //Create new array with months + difference in profits/losses
 
-var grtIncrease = finances.reduce((a,b) => (a[1] > b[1] ? a : b));
+var diffArray = new Array(finances.length-1)
+for (var i=0; i < finances.length-1; i++) {
+    diffArray[i] = new Array();
+}
+for (var i = 0; i < finances.length-1; i++) {
+    diffArray[i].push(finances[i+1][0]);
+    diffArray[i].push(finances[i+1][1] - finances[i][1]);
+}
 
-//The greatest decrease in losses over the entire period (date and amount)
+    // Function to target the elements at index [1] of diffArray (the numbers). If previous element (a) is greater than current element (b) is true, then the result is a.
+
+var grtIncrease = diffArray.reduce((a,b) => (a[1] > b[1] ? a : b));
+
     //Same technique used previously except the function checks if a is lesser than b.
 
-var grtDecrease = finances.reduce((a,b) => (a[1] < b[1] ? a : b));
+var grtDecrease = diffArray.reduce((a,b) => (a[1] < b[1] ? a : b));
 
 //Logs the whole analyis into the console
 
